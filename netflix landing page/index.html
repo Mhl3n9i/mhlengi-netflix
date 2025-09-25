@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mdluli-Netflix</title>
+  <!-- Favicon-->
+  <link rel="icon" href="https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico" />
+  <style>
+    /* ===== STYLES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER NAVIGATION ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 30px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .btn-signin {
+      background: #e50914;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-signin:hover {
+      background: #f40612;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), 
+                  url('https://assets.nflxext.com/ffe/siteui/vlv3/fc164b4b-f085-44ee-bb7f-0c9e9a8b3a55/0a817991-6f09-40bc-b845-8a49a4f1a7a0/IN-en-20240701-popsignuptwoweeks-perspective_alpha_website_medium.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      max-width: 800px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      max-width: 600px;
+    }
+
+    /* ===== GET STARTED SECTION ===== */
+    .get-started {
+      padding: 60px 5%;
+      text-align: center;
+      background: #000;
+    }
+
+    .get-started h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .get-started p {
+      font-size: 1.2rem;
+      color: #b3b3b3;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .email-form {
+      display: flex;
+      max-width: 600px;
+      margin: 0 auto;
+      gap: 10px;
+    }
+
+    .email-form input {
+      flex: 1;
+      padding: 14px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      background: #333;
+      color: white;
+    }
+
+    .email-form input::placeholder {
+      color: #aaa;
+    }
+
+    .email-form button {
+      background: #e50914;
+      color: white;
+      border: none;
+      padding: 0 24px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .email-form button:hover {
+      background: #f40612;
+    }
+
+    /* ===== VIDEO SECTION ===== */
+    .video-section {
+      padding: 60px 5%;
+      text-align: center;
+      background: #000;
+    }
+
+    .video-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+    }
+
+    .video-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 8px;
+    }
+
+    /* ===== FAQ SECTION ===== */
+    .faq {
+      padding: 60px 5%;
+      background: #000;
+      color: #fff;
+    }
+
+    .faq h2 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .faq details {
+      background: #1a1a1a;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq summary {
+      padding: 18px 24px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      outline: none;
+      list-style: none;
+      position: relative;
+    }
+
+    .faq summary::after {
+      content: '+';
+      position: absolute;
+      right: 24px;
+      font-size: 1.5rem;
+    }
+
+    .faq details[open] summary::after {
+      content: '−';
+    }
+
+    .faq details p {
+      padding: 0 24px 18px;
+      color: #ccc;
+      font-size: 1.1rem;
+    }
+
+    /* Remove default marker */
+    .faq details > summary {
+      list-style: none;
+    }
+
+    .faq details > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 40px 5%;
+      color: #757575;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .email-form {
+        flex-direction: column;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ========== HERO SECTION ========== -->
+  <header class="header">
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" />
+    </div>
+    <div class="nav-links">
+  <a href="https://www.netflix.com/browse">Home</a>
+  <a href="https://www.netflix.com/browse/genre/83">TV Shows</a>
+  <a href="https://www.netflix.com/browse/genre/34399">Movies</a>
+  <a href="https://www.netflix.com/browse/genre/2243108">New & Popular</a>
+  <a href="https://www.netflix.com/browse/my-list">My List</a>
+</div>
+    <a href="https://www.netflix.com/login" class="btn-signin">Sign In</a>
+  </header>
+
+  <section class="hero">
+    <h1>Unlimited movies, TV shows</h1>
+    <p>Watch anywhere. Cancel anytime. Ready to watch? Enter your email to create or restart your membership.</p>
+  </section>
+
+  <!-- ========== GET STARTED SECTION ========== -->
+  <section class="get-started">
+    <h2>Ready to watch? Enter your email to get started.</h2>
+    <p>Join millions of users who manage their entertainment.</p>
+    <form class="email-form">
+      <input type="email" placeholder="Email address" required />
+      <button type="submit">Get Started</button>
+    </form>
+  </section>
+
+  <!-- ========== VIDEO SECTION ========== -->
+  <section class="video-section">
+    <h2>Good and enjoyable movies, trailers,Tv shows and series </h2>
+    <div class="video-container">
+      <!--  YouTube trailer  -->
+      <iframe
+        src="https://www.youtube.com/embed/v7MGUNV8MxU?autoplay=0&mute=1"
+        title="trailer"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </section>
+
+  <!-- ========== FAQ SECTION ========== -->
+ <section class="faq">
+  <h2>Frequently Asked Questions</h2>
+  <details>
+    <summary>What is Netflix?</summary>
+    <p>Netflix is a streaming service with movies and shows online.</p>
+  </details>
+
+  <details>
+    <summary>How much does Netflix cost?</summary>
+    <p>Plans start from X per month depending on your region.</p>
+  </details>
+</section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <p>© 2025 netflix, Inc. Inspired by Netflix.</p>
+  </footer>
+
+  <script>
+
+    document.querySelector('.email-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you! In a real app, this would sign you up.');
+    });
+  </script>
+</body>
+</html>
