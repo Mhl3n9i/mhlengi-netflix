@@ -1,2 +1,2 @@
 # mhlengi-netflix
-streaming online Tv shows, movies and series
+this web is about streaming online Tv shows, movies and series
